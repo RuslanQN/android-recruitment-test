@@ -19,9 +19,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private String createQuotation() { //get table creation script
         return "create table " + QuotDataTemplate.TABLE_KEY + "( "
-                + QuotDataTemplate.ID_KEY + " integer primary key autoincrement, "
+                //+ QuotDataTemplate.ID_KEY + " integer primary key autoincrement, "
                 + QuotDataTemplate.DIRECTION_KEY + " text, "
-                + QuotDataTemplate.NAME_KEY + " text, "
+                + QuotDataTemplate.NAME_KEY + " text  primary key , "
                 + QuotDataTemplate.VAL1_KEY + " text, "
                 + QuotDataTemplate.VAL2_KEY + " text, "
                 + QuotDataTemplate.VAL3_KEY + " text, "

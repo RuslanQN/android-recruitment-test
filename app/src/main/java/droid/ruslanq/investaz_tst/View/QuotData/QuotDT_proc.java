@@ -17,13 +17,13 @@ public class QuotDT_proc {
     SQLiteDatabase sqlDB;
     Context context;
 
-    QuotDT_proc(Context context) {
+    public QuotDT_proc(Context context) {
         sqlDB = new DBHelper(context).getWritableDatabase();
         this.context = context;
 
     }
 
-    public void insert(@NonNull  QuotDataTemplate qDT) {
+    public void replace(@NonNull QuotDataTemplate qDT) {
         //insert new value to DB
         ContentValues cv = new ContentValues();
 
@@ -35,7 +35,7 @@ public class QuotDT_proc {
         cv.put(qDT.VAL4_KEY, qDT.val_4);
         cv.put(qDT.SPEC_KEY, qDT.spec);
         cv.put(qDT.DATETIME_KEY, qDT.datetime);
-        sqlDB.insert(qDT.TABLE_KEY, null, cv);
+        sqlDB.replace(qDT.TABLE_KEY, null, cv);
     }
 
 
@@ -43,7 +43,7 @@ public class QuotDT_proc {
         //insert list of value to DB
         for (QuotDataTemplate qDT : qDTList
                 ) {
-            insert(qDT);
+            replace(qDT);
         }
 
     }
@@ -54,12 +54,11 @@ public class QuotDT_proc {
         List<QuotDataTemplate> qdtList = new ArrayList<>();
         QuotDataTemplate qDT;
 
-        Cursor c = sqlDB.query(QuotDataTemplate.TABLE_KEY, null, null, null, null, null, QuotDataTemplate.ID_KEY + " Desc");
+        Cursor c = sqlDB.query(QuotDataTemplate.TABLE_KEY, null, null, null, null, null, QuotDataTemplate.NAME_KEY);
         if (c.moveToFirst()) {
             do {
                 qDT = new QuotDataTemplate();
 
-                qDT.id = c.getInt(c.getColumnIndex(QuotDataTemplate.ID_KEY));
                 qDT.name = c.getString(c.getColumnIndex(QuotDataTemplate.NAME_KEY));
                 qDT.direction = c.getString(c.getColumnIndex(QuotDataTemplate.DIRECTION_KEY));
                 qDT.val_1 = c.getString(c.getColumnIndex(QuotDataTemplate.VAL1_KEY));

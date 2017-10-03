@@ -8,7 +8,7 @@ public class QuotDataTemplate {
     //POJO for socket values and db creation template
     public final static String TABLE_KEY = "Quotations";
 
-    public final static String ID_KEY = "id";
+    //public final static String ID_KEY = "id";
     public final static String DIRECTION_KEY = "direction";
     public final static String NAME_KEY = "name";
     public final static String VAL1_KEY = "val_1";
@@ -19,7 +19,7 @@ public class QuotDataTemplate {
     public final static String DATETIME_KEY = "datetime";
 
 
-    public int id;
+    //public int id;
     public String direction;
     public String name;
     public String val_1;
